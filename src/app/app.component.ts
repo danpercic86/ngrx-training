@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ApiService } from './shared/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,8 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'ngrx';
+
+  constructor(readonly apiService: ApiService) {
+    apiService.loadItems();
+  }
 }

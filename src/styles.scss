@@ -2,3 +2,25 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.grid-container {
+  margin: 20px !important;
+}
+
+.dashboard-card {
+  position: absolute !important;
+  top: 15px !important;
+  left: 15px !important;
+  right: 15px !important;
+  bottom: 15px !important;
+}
+
+.more-button {
+  position: absolute !important;
+  top: 5px !important;
+  right: 10px !important;
+}
+
+.dashboard-card-content {
+  text-align: center !important;
+}

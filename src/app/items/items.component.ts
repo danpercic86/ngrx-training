@@ -1,20 +1,30 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {Observable, of} from "rxjs";
-import {Items} from "../utils/item.model";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { of } from 'rxjs';
+import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
-  styleUrls: ['./items.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsComponent {
-  items$: Observable<Items> = of([
-    {id: 1, title: 'Card 1', description: "Something here"},
-  ])
+  items$ = of([]);
 
-  constructor() {
+  constructor(private readonly dialog: MatDialog) {
   }
 
-  addItem(){}
+  addItem() {
+    this.dialog.open(AddItemDialogComponent, {
+      width: '500px',
+    });
+  }
+
+  removeItem(id: number) {
+    console.log('removing item with id ', id);
+  }
+
+  filter(withDescription: boolean) {
+    console.log('filter only with description');
+  }
 }
