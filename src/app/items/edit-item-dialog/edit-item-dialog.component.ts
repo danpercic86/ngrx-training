@@ -2,10 +2,9 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 import { ItemRequest } from '../../shared/models/item-request.model';
 import { ApiService } from '../../shared/services/api.service';
-import { ifFalsyThen } from '../../shared/utils/operators';
+import { Item } from '../../shared/models/item.model';
 
 @Component({
   selector: 'app-edit-item-dialog',
@@ -14,10 +13,9 @@ import { ifFalsyThen } from '../../shared/utils/operators';
 })
 export class EditItemDialogComponent {
   readonly item$: Observable<ItemRequest> = this.apiService.getItems().pipe(
-    map(items => items.find(item => item.id === this.id)),
-    ifFalsyThen(() => this.router.navigate(['items']).then()),
+    map<Item[], Item>(items => items.find(item => item.id === this.id) as Item),
     map(
-      item => ({
+      (item: Item) => ({
         title: item.title,
         description: item.description,
       } as ItemRequest),
@@ -28,7 +26,6 @@ export class EditItemDialogComponent {
     readonly dialogRef: MatDialogRef<EditItemDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private readonly id: number,
     private readonly apiService: ApiService,
-    private readonly router: Router,
   ) {}
 
   save(item: ItemRequest) {

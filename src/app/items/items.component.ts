@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { ApiService } from '../shared/services/api.service';
+import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
 
 @Component({
   selector: 'app-items',
@@ -24,6 +25,13 @@ export class ItemsComponent {
 
   removeItem(id: number) {
     console.log('removing item with id ', id);
+  }
+
+  editItem(id: number) {
+    this.dialog.open(EditItemDialogComponent, {
+      width: '500px',
+      data: id,
+    });
   }
 
   filter(withDescription: boolean) {

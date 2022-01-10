@@ -23,6 +23,7 @@
             {{ item.title }}
 
             <button
+              (click)="$event.stopPropagation()"
               [matMenuTriggerFor]="menu"
               aria-label="Toggle menu"
               class="more-button"
@@ -32,7 +33,7 @@
             </button>
 
             <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
+              <button (click)="editItem(item.id)" mat-menu-item>Edit</button>
               <button (click)="removeItem(item.id)" mat-menu-item>
                 Remove
               </button>
