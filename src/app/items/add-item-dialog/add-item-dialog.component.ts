@@ -16,11 +16,7 @@ export class AddItemDialogComponent {
   constructor(readonly dialogRef: MatDialogRef<AddItemDialogComponent>) {
   }
 
-  onNoClick() {
-    this.dialogRef.close();
-  }
-
-  addItem() {
+  save() {
     console.log('add new item ', this.newItem);
     this.dialogRef.close();
   }

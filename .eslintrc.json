@@ -4,8 +4,19 @@
     "projects/**/*"
   ],
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "prettier"
   ],
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "tabWidth": 4,
+        "ignorePattern": "^import .*"
+      }
+    ]
+  },
   "overrides": [
     {
       "files": [
@@ -20,6 +31,7 @@
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/recommended--extra",
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
@@ -52,7 +64,11 @@
         ],
         "import/prefer-default-export": "off",
         "class-methods-use-this": "off",
-        "no-console": "off"
+        "no-console": "off",
+        "indent": [
+          "error",
+          2
+        ]
       }
     },
     {

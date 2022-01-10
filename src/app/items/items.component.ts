@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { of } from 'rxjs';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
+import { ApiService } from '../shared/services/api.service';
 
 @Component({
   selector: 'app-items',
@@ -9,10 +9,12 @@ import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.compon
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsComponent {
-  items$ = of([]);
+  readonly items$ = this.apiService.getItems();
 
-  constructor(private readonly dialog: MatDialog) {
-  }
+  constructor(
+    private readonly dialog: MatDialog,
+    private readonly apiService: ApiService,
+  ) {}
 
   addItem() {
     this.dialog.open(AddItemDialogComponent, {
@@ -25,6 +27,6 @@ export class ItemsComponent {
   }
 
   filter(withDescription: boolean) {
-    console.log('filter only with description');
+    console.log('filter only with description', withDescription);
   }
 }

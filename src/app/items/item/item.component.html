@@ -1,22 +1,27 @@
-<div class="h-50" *ngIf="item$ | async as item">
+<div *ngIf="item$ | async as item" class="h-50">
   <mat-card class="m-5 h-50">
     <mat-card-header>
       <mat-card-title>
-        {{item.title}}
+        {{ item.title }}
 
-        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+        <button
+          [matMenuTriggerFor]="menu"
+          aria-label="Toggle menu"
+          class="more-button"
+          mat-icon-button
+        >
           <mat-icon>more_vert</mat-icon>
         </button>
 
         <mat-menu #menu="matMenu" xPosition="before">
           <button mat-menu-item>Expand</button>
-          <button mat-menu-item (click)="removeItem(item.id)">Remove</button>
+          <button (click)="removeItem(item.id)" mat-menu-item>Remove</button>
         </mat-menu>
       </mat-card-title>
     </mat-card-header>
 
     <mat-card-content class="dashboard-card-content">
-      <div>{{item.description}}</div>
+      <div>{{ item.description }}</div>
     </mat-card-content>
   </mat-card>
 </div>

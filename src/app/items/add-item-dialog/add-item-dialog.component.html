@@ -1,18 +1,25 @@
-<h1 mat-dialog-title>Add new item</h1>
+<h1 mat-dialog-title>Add item</h1>
 
 <div mat-dialog-content>
-  <mat-form-field class="w-100" appearance="fill">
+  <mat-form-field appearance="fill" class="w-100">
     <mat-label>Title</mat-label>
-    <input matInput [(ngModel)]="newItem.title">
+    <input [(ngModel)]="newItem.title" matInput />
   </mat-form-field>
 
-  <mat-form-field class="w-100" appearance="fill">
+  <mat-form-field appearance="fill" class="w-100">
     <mat-label>Description</mat-label>
-    <input matInput [(ngModel)]="newItem.description">
+    <input [(ngModel)]="newItem.description" matInput />
   </mat-form-field>
 </div>
 
-<div mat-dialog-actions class="d-flex justify-content-end">
-  <button mat-button (click)="onNoClick()">Close</button>
-  <button mat-button class="mat-primary" [disabled]="!newItem.title || !newItem.description" (click)="addItem()">Add</button>
+<div class="d-flex justify-content-end" mat-dialog-actions>
+  <button (click)="dialogRef.close()" mat-button>Close</button>
+  <button
+    (click)="save()"
+    [disabled]="!newItem.title || !newItem.description"
+    class="mat-primary"
+    mat-button
+  >
+    Add
+  </button>
 </div>

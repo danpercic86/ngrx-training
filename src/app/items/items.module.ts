@@ -14,12 +14,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { ItemComponent } from './item/item.component';
 import { ItemsComponent } from './items.component';
+import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
 
 @NgModule({
   declarations: [
     ItemsComponent,
     ItemComponent,
     AddItemDialogComponent,
+    EditItemDialogComponent,
   ],
   imports: [
     MatGridListModule,

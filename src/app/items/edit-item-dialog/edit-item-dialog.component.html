@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Edit item</h1>
+
+<ng-container *ngIf="item$ | async as item">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Title</mat-label>
+      <input [(ngModel)]="item.title" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Description</mat-label>
+      <input [(ngModel)]="item.description" matInput />
+    </mat-form-field>
+  </div>
+
+  <div class="d-flex justify-content-end" mat-dialog-actions>
+    <button (click)="dialogRef.close()" mat-button>Close</button>
+    <button
+      (click)="save(item)"
+      [disabled]="!item.title || !item.description"
+      class="mat-primary"
+      mat-button
+    >
+      Edit
+    </button>
+  </div>
+</ng-container>
