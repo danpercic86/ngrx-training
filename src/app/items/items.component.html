@@ -6,9 +6,19 @@
       Show only with description
     </mat-checkbox>
 
-    <button (click)="addItem()" class="mat-primary" mat-raised-button>
-      Add item
-    </button>
+    <div>
+      <button (click)="loadItems()" class="mat-primary me-3" mat-raised-button>
+        Load items
+      </button>
+
+      <button (click)="resetItems()" class="mat-primary me-3" mat-raised-button>
+        Reset items
+      </button>
+
+      <button (click)="addItem()" class="mat-primary" mat-raised-button>
+        Add item
+      </button>
+    </div>
   </div>
 
   <mat-grid-list cols="4" rowHeight="350px">

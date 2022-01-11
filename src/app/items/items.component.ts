@@ -17,6 +17,13 @@ export class ItemsComponent {
     private readonly apiService: ApiService,
   ) {}
 
+  async loadItems() {
+    const items = await firstValueFrom(this.apiService.getItems());
+  }
+
+  resetItems() {
+  }
+
   addItem() {
     this.dialog.open(AddItemDialogComponent, {
       width: '500px',
