@@ -1,8 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { firstValueFrom } from 'rxjs';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { ApiService } from '../shared/services/api.service';
 import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
+import { AppState } from '../state/reducers';
+import { resetItemsAction, setItemsAction } from '../state/actions';
 
 @Component({
   selector: 'app-items',
@@ -10,18 +14,21 @@ import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.com
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsComponent {
-  readonly items$ = this.apiService.getItems();
+  readonly items$ = this.store.select('items');
 
   constructor(
     private readonly dialog: MatDialog,
     private readonly apiService: ApiService,
+    private readonly store: Store<AppState>,
   ) {}
 
   async loadItems() {
     const items = await firstValueFrom(this.apiService.getItems());
+    this.store.dispatch(setItemsAction({ items }));
   }
 
   resetItems() {
+    this.store.dispatch(resetItemsAction());
   }
 
   addItem() {
