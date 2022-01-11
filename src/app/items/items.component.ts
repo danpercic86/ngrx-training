@@ -7,6 +7,11 @@ import { ApiService } from '../shared/services/api.service';
 import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
 import { AppState } from '../state/reducers';
 import { resetItemsAction, setItemsAction } from '../state/actions';
+import {
+  selectItems,
+  selectItemsCount,
+  selectItemsWithDescriptionCount,
+} from '../state/selectors';
 
 @Component({
   selector: 'app-items',
@@ -14,7 +19,13 @@ import { resetItemsAction, setItemsAction } from '../state/actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsComponent {
-  readonly items$ = this.store.select('items');
+  readonly items$ = this.store.select(selectItems);
+
+  readonly itemsCount$ = this.store.select(selectItemsCount);
+
+  readonly itemsWithDescriptionCount$ = this.store.select(
+    selectItemsWithDescriptionCount,
+  );
 
   constructor(
     private readonly dialog: MatDialog,

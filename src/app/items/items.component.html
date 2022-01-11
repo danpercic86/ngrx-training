@@ -1,9 +1,9 @@
 <div class="grid-container">
   <div class="d-flex justify-content-between">
-    <h1 class="mat-h1">Items</h1>
+    <h1 class="mat-h1">Items {{ itemsCount$ | async }}</h1>
 
     <mat-checkbox (change)="filter($event.checked)" color="primary">
-      Show only with description
+      Show only with description {{ itemsWithDescriptionCount$ | async }}
     </mat-checkbox>
 
     <div>
