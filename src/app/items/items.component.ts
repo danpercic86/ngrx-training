@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { ApiService } from '../shared/services/api.service';
 import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
+import { Item } from '../shared/models/item.model';
 
 @Component({
   selector: 'app-items',
@@ -43,5 +44,9 @@ export class ItemsComponent {
 
   filter(withDescription: boolean) {
     console.log('filter only with description', withDescription);
+  }
+
+  toggleSelect(item: Item) {
+    console.log('toggle select ', item);
   }
 }

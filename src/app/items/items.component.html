@@ -54,6 +54,11 @@
         <mat-card-content class="dashboard-card-content">
           <div>{{ item.description }}</div>
         </mat-card-content>
+
+        <mat-checkbox
+          (change)="toggleSelect(item)"
+          [checked]="false"
+        ></mat-checkbox>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
