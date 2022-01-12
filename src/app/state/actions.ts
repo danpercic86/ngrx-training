@@ -10,6 +10,10 @@ export const addItemAction = createAction(
   '[Items Page] Add item',
   props<{ item: Item }>(),
 );
+export const editItemAction = createAction(
+  '[Items Page] Edit item',
+  props<{ item: Item }>(),
+);
 export const removeItemAction = createAction(
   '[Items Page] Remove Item',
   props<{ itemId: number }>(),
