@@ -48,4 +48,8 @@ export class ItemsComponent {
   toggleSelect(itemId: number) {
     console.log('toggle select ', itemId);
   }
+
+  resetSelected() {
+    console.log('reset selected');
+  }
 }
