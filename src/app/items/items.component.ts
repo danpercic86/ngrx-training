@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { ApiService } from '../shared/services/api.service';
 import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
@@ -21,8 +22,7 @@ export class ItemsComponent {
     const items = await firstValueFrom(this.apiService.getItems());
   }
 
-  resetItems() {
-  }
+  resetItems() {}
 
   addItem() {
     this.dialog.open(AddItemDialogComponent, {
