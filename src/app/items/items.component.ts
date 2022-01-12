@@ -6,7 +6,11 @@ import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.compon
 import { ApiService } from '../shared/services/api.service';
 import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
 import { AppState } from '../state/reducers';
-import { resetItemsAction, setItemsAction } from '../state/actions';
+import {
+  removeItemAction,
+  resetItemsAction,
+  setItemsAction,
+} from '../state/actions';
 import {
   selectItems,
   selectItemsCount,
@@ -50,6 +54,7 @@ export class ItemsComponent {
 
   removeItem(id: number) {
     console.log('removing item with id ', id);
+    this.store.dispatch(removeItemAction({ itemId: id }));
   }
 
   editItem(id: number) {
