@@ -15,3 +15,4 @@ export const toggleSelectAction = createAction(
   props<{ itemId: number }>(),
 );
 export const resetSelectedAction = createAction('[Items Page] Reset selected');
+export const loadItemsAction = createAction('[Items API] Load items');

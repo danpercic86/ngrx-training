@@ -13,11 +13,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { reducers } from './state/reducers';
+import { ItemsEffects } from './state/effects/items.effects';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, NavigationComponent],
@@ -39,6 +41,7 @@ import { reducers } from './state/reducers';
       maxAge: 25,
       autoPause: true,
     }),
+    EffectsModule.forRoot([ItemsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

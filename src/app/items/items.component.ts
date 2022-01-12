@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { firstValueFrom, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { ApiService } from '../shared/services/api.service';
@@ -9,9 +9,9 @@ import { AppState } from '../state/reducers';
 import {
   displayAll,
   filterWithDescription,
+  loadItemsAction,
   resetItemsAction,
   resetSelectedAction,
-  setItemsAction,
   toggleSelectAction,
 } from '../state/actions';
 import { selectDisplayedAndSelected } from '../state/selectors';
@@ -34,8 +34,8 @@ export class ItemsComponent {
   ) {}
 
   async loadItems() {
-    const items = await firstValueFrom(this.apiService.getItems());
-    this.store.dispatch(setItemsAction({ items }));
+    // const items = await firstValueFrom(this.apiService.getItems());
+    this.store.dispatch(loadItemsAction());
   }
 
   resetItems() {
