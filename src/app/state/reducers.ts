@@ -1,4 +1,6 @@
 import { ActionReducerMap, createReducer, on } from '@ngrx/store';
+import { routerReducer } from '@ngrx/router-store';
+import { Router } from '@angular/router';
 import { Item } from '../shared/models/item.model';
 import {
   displayAll,
@@ -23,6 +25,7 @@ export const initialItemsState: ItemsState = {
 
 export interface AppState {
   items: ItemsState;
+  router: Router;
 }
 
 export const itemsReducer = createReducer(
@@ -53,4 +56,5 @@ export const itemsReducer = createReducer(
 
 export const reducers: ActionReducerMap<AppState> = {
   items: itemsReducer,
+  router: routerReducer,
 };

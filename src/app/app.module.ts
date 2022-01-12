@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ import { ItemsEffects } from './state/effects/items.effects';
     MatSidenavModule,
     MatListModule,
     StoreModule.forRoot(reducers),
+    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       autoPause: true,
