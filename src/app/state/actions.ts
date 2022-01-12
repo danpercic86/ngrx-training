@@ -6,3 +6,7 @@ export const setItemsAction = createAction(
   '[Items Page] Set items',
   props<{ items: Item[] }>(),
 );
+export const addItemAction = createAction(
+  '[Items Page] Add item',
+  props<{ item: Item }>(),
+);
