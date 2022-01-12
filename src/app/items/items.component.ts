@@ -1,9 +1,21 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { ApiService } from '../shared/services/api.service';
 import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
+import { AppState } from '../state/reducers';
+import {
+  displayAll,
+  filterWithDescription,
+  resetItemsAction,
+  resetSelectedAction,
+  setItemsAction,
+  toggleSelectAction,
+} from '../state/actions';
+import { selectDisplayedAndSelected } from '../state/selectors';
+import { DisplayItem } from '../shared/models/display-item.model';
 
 @Component({
   selector: 'app-items',
@@ -11,18 +23,24 @@ import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.com
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsComponent {
-  readonly items$ = this.apiService.getItems();
+  readonly items$: Observable<DisplayItem[]> = this.store.select(
+    selectDisplayedAndSelected,
+  );
 
   constructor(
     private readonly dialog: MatDialog,
     private readonly apiService: ApiService,
+    private readonly store: Store<AppState>,
   ) {}
 
   async loadItems() {
     const items = await firstValueFrom(this.apiService.getItems());
+    this.store.dispatch(setItemsAction({ items }));
   }
 
-  resetItems() {}
+  resetItems() {
+    this.store.dispatch(resetItemsAction());
+  }
 
   addItem() {
     this.dialog.open(AddItemDialogComponent, {
@@ -43,13 +61,20 @@ export class ItemsComponent {
 
   filter(withDescription: boolean) {
     console.log('filter only with description', withDescription);
+    if (withDescription) {
+      this.store.dispatch(filterWithDescription());
+    } else {
+      this.store.dispatch(displayAll());
+    }
   }
 
   toggleSelect(itemId: number) {
     console.log('toggle select ', itemId);
+    this.store.dispatch(toggleSelectAction({ itemId }));
   }
 
   resetSelected() {
     console.log('reset selected');
+    this.store.dispatch(resetSelectedAction());
   }
 }

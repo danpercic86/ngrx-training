@@ -11,17 +11,15 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { StoreModule } from '@ngrx/store';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { reducers } from './state/reducers';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    NavigationComponent,
-  ],
+  declarations: [AppComponent, DashboardComponent, NavigationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,9 +33,9 @@ import { AppRoutingModule } from './app-routing.module';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    StoreModule.forRoot(reducers),
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
