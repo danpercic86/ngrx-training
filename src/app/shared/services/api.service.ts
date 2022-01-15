@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, take } from 'rxjs';
+import {
+  delay, Observable, of, take,
+} from 'rxjs';
 import { Item } from '../models/item.model';
 
 @Injectable({
@@ -20,10 +22,14 @@ export class ApiService {
       { id: 10, title: 'Pizza 8', description: 'Margherita' },
       { id: 11, title: 'Pizza 9', description: 'Margherita' },
       { id: 12, title: 'Pizza 12', description: 'Margherita' },
-    ]);
+    ]).pipe(delay(3000));
   }
 
   loadItems() {
     return this.getItems().pipe(take(1)).subscribe();
+  }
+
+  remove(id: number) {
+    return of(id).pipe(delay(2000));
   }
 }

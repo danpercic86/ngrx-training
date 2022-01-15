@@ -7,3 +7,7 @@ export interface Item {
 }
 
 export type Items = List<Item>;
+
+export interface DisplayedItem extends Item {
+  checked: boolean;
+}

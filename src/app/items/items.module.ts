@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { ItemComponent } from './item/item.component';
 import { ItemsComponent } from './items.component';
@@ -39,7 +40,7 @@ import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.com
     MatInputModule,
     FormsModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
   ],
 })
-export class ItemsModule {
-}
+export class ItemsModule {}

@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ApiService } from '../../shared/services/api.service';
-import { Item } from '../../shared/models/item.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../state';
+import { selectItem } from '../../state/selectors';
 
 @Component({
   selector: 'app-item',
@@ -11,15 +9,15 @@ import { Item } from '../../shared/models/item.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemComponent {
-  readonly item$: Observable<Item>;
+  readonly item$ = this.store.select(selectItem);
 
-  constructor(activatedRoute: ActivatedRoute, apiService: ApiService) {
-    const id = Number(activatedRoute.snapshot.paramMap.get('id'));
-    this.item$ = apiService
-      .getItems()
-      .pipe(
-        map(items => items.find(item => item.id === id)),
-      ) as Observable<Item>;
+  constructor(readonly store: Store<AppState>) {
+    // const id = Number(activatedRoute.snapshot.paramMap.get('id'));
+    // this.item$ = apiService
+    //   .getItems()
+    //   .pipe(
+    //     map(items => items.find(item => item.id === id)),
+    //   ) as Observable<Item>;
   }
 
   removeItem(id: number) {
