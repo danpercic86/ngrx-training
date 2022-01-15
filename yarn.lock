@@ -1364,6 +1364,13 @@
   "resolved" "https://registry.npmjs.org/@jridgewell/resolve-uri/-/resolve-uri-1.0.0.tgz"
   "version" "1.0.0"
 
+"@ngrx/component-store@^13.0.2":
+  "integrity" "sha512-zAqXuO2FT3gBJp9TWc0O8Lo4h62xbXmUxBYYTT2/BNczK+XNf/pzDWrYEtsgwP4Php0AgoY38Ht0ZS6sJkgpMQ=="
+  "resolved" "https://registry.npmjs.org/@ngrx/component-store/-/component-store-13.0.2.tgz"
+  "version" "13.0.2"
+  dependencies:
+    "tslib" "^2.0.0"
+
 "@ngrx/effects@^13.0.2":
   "integrity" "sha512-7yW/KCxlRatDkdEriSnORlOYX8+1QAWEjPulNmHSPwehkzTQ3fIPfRBQy8xP8bnjwvGxnEZNwQlU4q1KVYOfhg=="
   "resolved" "https://registry.npmjs.org/@ngrx/effects/-/effects-13.0.2.tgz"

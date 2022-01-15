@@ -13,7 +13,7 @@ export interface ItemsState {
   checkedIds: number[];
 }
 
-const initialState: ItemsState = {
+export const initialState: ItemsState = {
   all: [],
   displayedIds: [],
   checkedIds: [],
