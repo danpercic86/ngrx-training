@@ -1,4 +1,4 @@
 export interface ItemRequest {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
 }

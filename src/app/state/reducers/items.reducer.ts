@@ -1,7 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { Item } from '../../shared/models/item.model';
 import {
   deleteItem,
+  editItem,
   setItems,
   toggleCheckItem,
   toggleWithDescription,
@@ -12,6 +14,47 @@ export interface ItemsState {
   displayedIds: number[];
   checkedIds: number[];
 }
+
+export interface EntityItemsState extends EntityState<Item> {
+  displayedIds: number[];
+  checkedIds: number[];
+}
+
+function sortById(a: Item, b: Item) {
+  if (a.id > b.id) {
+    return a.id;
+  }
+
+  return b.id;
+}
+
+export const itemsAdapter = createEntityAdapter<Item>({
+  selectId: (item: Item) => item.id,
+  sortComparer: sortById,
+});
+
+export const entityInitialState = itemsAdapter.getInitialState({
+  displayedIds: [] as number[],
+  checkedIds: [] as number[],
+});
+
+export const entityItemsReducer = createReducer(
+  entityInitialState,
+  on(setItems, (state, payload) => itemsAdapter.setAll(payload.items, {
+    ...state,
+    displayedIds: payload.items.map(item => item.id),
+    checkedIds: [],
+  })),
+  on(deleteItem, (state, payload) => {
+    console.log(payload);
+    return itemsAdapter.removeOne(payload.id, {
+      ...state,
+      displayedIds: state.displayedIds.filter(id => id !== payload.id),
+      checkedIds: state.checkedIds.filter(id => id !== payload.id),
+    });
+  }),
+  on(editItem, (state, payload) => itemsAdapter.updateOne(payload.item, state)),
+);
 
 export const initialState: ItemsState = {
   all: [],

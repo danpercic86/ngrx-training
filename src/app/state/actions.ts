@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 import { Item } from '../shared/models/item.model';
 
 export const loadItems = createAction('[Items API] Load items');
@@ -23,4 +24,9 @@ export const toggleCheckItem = createAction(
 export const toggleWithDescription = createAction(
   '[Items Page] Toggle with description',
   props<{ withDescription: boolean }>(),
+);
+
+export const editItem = createAction(
+  '[Items Edit Dialog] Edit item',
+  props<{ item: Update<Item> }>(),
 );
